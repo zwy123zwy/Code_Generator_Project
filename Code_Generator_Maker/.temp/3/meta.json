@@ -1,0 +1,265 @@
+{
+    "name": "springboot-init-generator",
+    "description": "Spring Boot 模板项目生成器",
+    "fileConfig": {
+        "sourceRootPath": "C:/Users/Zhangwenye/Desktop/lowCode/codeGeneratorMaker/.temp/3/springboot-init",
+        "files": [
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/service/impl/PostServiceImpl.java",
+                "outputPath": "src/main/java/com/example/springbootinit/service/impl/PostServiceImpl.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/config/MyBatisPlusConfig.java.ftl",
+                "outputPath": "src/main/java/com/example/springbootinit/config/MyBatisPlusConfig.java",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/config/JsonConfig.java",
+                "outputPath": "src/main/java/com/example/springbootinit/config/JsonConfig.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserLoginRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserLoginRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/resources/mapper/PostMapper.xml",
+                "outputPath": "src/main/resources/mapper/PostMapper.xml",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".gitignore",
+                "outputPath": ".gitignore",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/service/PostService.java",
+                "outputPath": "src/main/java/com/example/springbootinit/service/PostService.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/exception/GlobalExceptionHandler.java",
+                "outputPath": "src/main/java/com/example/springbootinit/exception/GlobalExceptionHandler.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/dto/post/PostEsDTO.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/dto/post/PostEsDTO.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/common/DeleteRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/common/DeleteRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/controller/UserController.java.ftl",
+                "outputPath": "src/main/java/com/example/springbootinit/controller/UserController.java",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/mapper/PostMapper.java",
+                "outputPath": "src/main/java/com/example/springbootinit/mapper/PostMapper.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "pom.xml.ftl",
+                "outputPath": "pom.xml",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/service/UserService.java",
+                "outputPath": "src/main/java/com/example/springbootinit/service/UserService.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/common/ErrorCode.java",
+                "outputPath": "src/main/java/com/example/springbootinit/common/ErrorCode.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/resources/mapper/UserMapper.xml",
+                "outputPath": "src/main/resources/mapper/UserMapper.xml",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserAddRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserAddRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/controller/PostController.java",
+                "outputPath": "src/main/java/com/example/springbootinit/controller/PostController.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/config/CorsConfig.java",
+                "outputPath": "src/main/java/com/example/springbootinit/config/CorsConfig.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/exception/ThrowUtils.java",
+                "outputPath": "src/main/java/com/example/springbootinit/exception/ThrowUtils.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/dto/post/PostAddRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/dto/post/PostAddRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/entity/User.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/entity/User.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserUpdateRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserUpdateRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/common/BaseResponse.java",
+                "outputPath": "src/main/java/com/example/springbootinit/common/BaseResponse.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/dto/post/PostQueryRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/dto/post/PostQueryRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserRegisterRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserRegisterRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/dto/post/PostUpdateRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/dto/post/PostUpdateRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/exception/BusinessException.java",
+                "outputPath": "src/main/java/com/example/springbootinit/exception/BusinessException.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserQueryRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/dto/user/UserQueryRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/MainApplication.java.ftl",
+                "outputPath": "src/main/java/com/example/springbootinit/MainApplication.java",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/entity/Post.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/entity/Post.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "README.md",
+                "outputPath": "README.md",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/config/Knife4jConfig.java.ftl",
+                "outputPath": "src/main/java/com/example/springbootinit/config/Knife4jConfig.java",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/constant/UserConstant.java",
+                "outputPath": "src/main/java/com/example/springbootinit/constant/UserConstant.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/common/ResultUtils.java",
+                "outputPath": "src/main/java/com/example/springbootinit/common/ResultUtils.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "Dockerfile",
+                "outputPath": "Dockerfile",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/mapper/UserMapper.java",
+                "outputPath": "src/main/java/com/example/springbootinit/mapper/UserMapper.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/model/enums/UserRoleEnum.java",
+                "outputPath": "src/main/java/com/example/springbootinit/model/enums/UserRoleEnum.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/service/impl/UserServiceImpl.java",
+                "outputPath": "src/main/java/com/example/springbootinit/service/impl/UserServiceImpl.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/example/springbootinit/common/PageRequest.java",
+                "outputPath": "src/main/java/com/example/springbootinit/common/PageRequest.java",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/resources/application.yml",
+                "outputPath": "src/main/resources/application.yml",
+                "type": "file",
+                "generateType": "static"
+            }
+        ]
+    },
+    "modelConfig": {
+        "models": [
+            {
+                "fieldName": "basePackage",
+                "type": "String",
+                "description": "基础包名",
+                "defaultValue": "com.example1"
+            }
+        ]
+    }
+}

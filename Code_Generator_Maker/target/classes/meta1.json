@@ -1,0 +1,67 @@
+{
+    "name": "acm-template-pro-generator",
+    "description": "ACM 示例模板生成器",
+    "basePackage": "com.example",
+    "version": "1.0",
+    "author": "example",
+    "createTime": "2023-11-22",
+    "fileConfig": {
+      "sourceRootPath": "/Users/Zhangwenye/Desktop/lowCode/demoProjects/acm-template-pro",
+      "inputRootPath": ".source/acm-template-pro",
+      "outputRootPath": "generated",
+      "type": "dir",
+      "files": [
+        {
+          "inputPath": "src/com/example/acm/MainTemplate.java.ftl",
+          "outputPath": "src/com/example/acm/MainTemplate.java",
+          "type": "file",
+          "generateType": "dynamic"
+        },
+        {
+          "inputPath": ".gitignore",
+          "outputPath": ".gitignore",
+          "type": "file",
+          "generateType": "static",
+          "condition": "needGit"
+        },
+        {
+          "inputPath": "README.md",
+          "outputPath": "README.md",
+          "type": "file",
+          "generateType": "static"
+        }
+      ]
+    },
+    "modelConfig": {
+      "models": [
+        {
+          "fieldName": "needGit",
+          "type": "boolean",
+          "description": "是否生成 .gitignore文件",
+          "defaultValue": true,
+          "abbr": "ng"
+        },
+        {
+          "fieldName": "loop",
+          "type": "boolean",
+          "description": "是否生成循环",
+          "defaultValue": false,
+          "abbr": "l"
+        },
+        {
+          "fieldName": "author",
+          "type": "String",
+          "description": "作者注释",
+          "defaultValue": "example",
+          "abbr": "a"
+        },
+        {
+          "fieldName": "outputText",
+          "type": "String",
+          "description": "输出信息",
+          "defaultValue": "sum = ",
+          "abbr": "o"
+        }
+      ]
+    }
+  }

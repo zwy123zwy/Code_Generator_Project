@@ -1,0 +1,9 @@
+com\example\generator\DynamicFileGenerator.class
+com\example\generator\FileGenerator.class
+com\example\Main.class
+com\example\generator\StaticFileGenerator.class
+com\example\cli\command\ListCommand.class
+com\example\cli\CommandExecutor.class
+com\example\cli\command\ConfigCommand.class
+com\example\model\DataModel.class
+com\example\cli\command\GenerateCommand.class
