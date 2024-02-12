@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$" dumb="true">
+      <excludeFolder url="file://$MODULE_DIR$/.temp/1/springboot-init/src/test" />
+      <excludeFolder url="file://$MODULE_DIR$/.temp/2/springboot-init/src/main/java/com/yupi" />
+      <excludeFolder url="file://$MODULE_DIR$/.temp/2/springboot-init/src/test" />
+      <excludeFolder url="file://$MODULE_DIR$/.temp/3/springboot-init/src/main/java/com/yupi" />
+      <excludeFolder url="file://$MODULE_DIR$/.temp/3/springboot-init/src/test" />
+      <excludeFolder url="file://$MODULE_DIR$/generated/acm-template-pro-generator/target/archive-tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/generated/acm-template-pro-generator/target/generated-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/generated/springboot-init-generator/.source/springboot-init/src/test" />
+      <excludeFolder url="file://$MODULE_DIR$/generated/springboot-init-generator/target/archive-tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/generated/springboot-init-generator/target/generated-sources" />
+    </content>
+  </component>
+</module>
