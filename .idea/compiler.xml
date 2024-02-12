@@ -6,15 +6,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springboot-init" />
         <module name="Code_Generator_Basic" />
+        <module name="springboot-init (1)" />
         <module name="Code_Generator_Maker" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springboot-init" target="1.8" />
+      <module name="springboot-init (2)" target="1.8" />
+      <module name="springboot-init (3) (com.yupi)" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="springboot-init" options="-parameters" />
+      <module name="springboot-init (1)" options="-parameters" />
+      <module name="springboot-init (2)" options="-parameters" />
+      <module name="springboot-init (3) (com.yupi)" options="-parameters" />
     </option>
   </component>
 </project>
