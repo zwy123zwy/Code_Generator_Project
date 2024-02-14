@@ -69,6 +69,11 @@ declare namespace API {
     id?: number;
   };
 
+  type downloadGeneratorByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
   type FileConfig = {
     files?: FileInfo[];
     inputRootPath?: string;
@@ -154,6 +159,11 @@ declare namespace API {
     status?: number;
     tags?: string[];
     version?: string;
+  };
+
+  type GeneratorUseRequest = {
+    dataModel?: Record<string, any>;
+    id?: number;
   };
 
   type GeneratorVO = {
@@ -272,6 +282,11 @@ declare namespace API {
     searchCount?: boolean;
     size?: number;
     total?: number;
+  };
+
+  type testDownloadFileUsingGETParams = {
+    /** filepath */
+    filepath?: string;
   };
 
   type uploadFileUsingPOSTParams = {

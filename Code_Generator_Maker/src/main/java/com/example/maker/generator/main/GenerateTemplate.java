@@ -16,7 +16,7 @@ import java.io.IOException;
 public abstract class GenerateTemplate {
 
     /**
-     *
+     * 无参构造代码的方法
      * @throws TemplateException
      * @throws IOException
      * @throws InterruptedException
@@ -31,7 +31,7 @@ public abstract class GenerateTemplate {
 
     /**
      * 生成
-     *
+     * 有参构造代码的方法
      * @throws TemplateException
      * @throws IOException
      * @throws InterruptedException

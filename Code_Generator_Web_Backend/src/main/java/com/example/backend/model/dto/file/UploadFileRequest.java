@@ -12,7 +12,7 @@ import lombok.Data;
 public class UploadFileRequest implements Serializable {
 
     /**
-     * 业务
+     * 业务辨识
      */
     private String biz;
 

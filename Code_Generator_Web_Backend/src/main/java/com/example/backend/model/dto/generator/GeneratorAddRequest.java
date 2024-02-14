@@ -1,16 +1,10 @@
 package com.example.backend.model.dto.generator;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.example.backend.meta.Meta;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 创建请求
@@ -20,7 +14,7 @@ import java.util.Map;
 @Data
 public class GeneratorAddRequest implements Serializable {
 
-  ;
+
 
     /**
      * 名称
