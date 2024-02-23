@@ -1,3 +1,4 @@
+import logo from '../public/LOGO1.svg'
 import Footer from '@/components/Footer';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
@@ -41,6 +42,7 @@ export async function getInitialState(): Promise<InitialState> {
 // @ts-ignore
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
   return {
+    logo,
     avatarProps: {
       render: () => {
         return <AvatarDropdown />;

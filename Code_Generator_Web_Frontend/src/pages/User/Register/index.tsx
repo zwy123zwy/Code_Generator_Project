@@ -6,6 +6,7 @@ import { Helmet, history, useModel,Link } from '@umijs/max';
 import { message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import Settings from '../../../../config/defaultSettings';
+import '../Login/index.css'
 // React.FC React.FC是一个函数式组件，是在TypeScript使用一个泛型，FC就是FunctionComponent的缩写，
 // 事实上React.FC可以写成React.FunctionComponent
 /**
@@ -65,7 +66,7 @@ const Register: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" style={{ height: '100%' }} src="/LOGO1.svg" />}
-          title="EasyCode生成平台"
+          title="EasyCode代码生成平台"
           subTitle={'一个简单、好用的代码生成平台'}
           initialValues={{
             autoLogin: true,
@@ -73,7 +74,7 @@ const Register: React.FC = () => {
           // {/* 高级组件修改内部的按钮文字 */}
           submitter={{
             searchConfig: {
-              submitText:"注册"
+              submitText:"欢迎注册"
             },
           }}
           onFinish={async (values) => {
@@ -145,7 +146,7 @@ const Register: React.FC = () => {
               textAlign: 'right',
             }}
           >
-            <Link to="/user/login" style={{color:'skyblue'}}>用户登录</Link>
+            <Link to="/user/login" className="test" >用户登录</Link>
           </div>
         </LoginForm>
       </div>

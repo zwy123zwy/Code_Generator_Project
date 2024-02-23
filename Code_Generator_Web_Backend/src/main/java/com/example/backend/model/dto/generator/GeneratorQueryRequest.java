@@ -86,6 +86,15 @@ public class GeneratorQueryRequest extends PageRequest implements Serializable {
      * 状态
      */
     private Integer status;
+    /**
+     * 点赞数
+     */
+    private Integer thumbNum = 0;
+
+    /**
+     * 收藏数
+     */
+    private Integer favourNum = 0;
 
     private static final long serialVersionUID = 1L;
 }

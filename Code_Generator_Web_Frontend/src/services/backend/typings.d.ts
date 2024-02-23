@@ -11,6 +11,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseInt_ = {
+    code?: number;
+    data?: number;
+    message?: string;
+  };
+
   type BaseResponseLoginUserVO_ = {
     code?: number;
     data?: LoginUserVO;
@@ -99,6 +105,7 @@ declare namespace API {
     createTime?: string;
     description?: string;
     distPath?: string;
+    favourNum?: number;
     fileConfig?: string;
     id?: number;
     isDelete?: number;
@@ -107,6 +114,7 @@ declare namespace API {
     picture?: string;
     status?: number;
     tags?: string;
+    thumbNum?: number;
     updateTime?: string;
     userId?: number;
     version?: string;
@@ -124,6 +132,42 @@ declare namespace API {
     status?: number;
     tags?: string[];
     version?: string;
+  };
+
+  type GeneratorCacheRequest = {
+    id?: number;
+  };
+
+  type GeneratorEditRequest = {
+    author?: string;
+    basePackage?: string;
+    description?: string;
+    distPath?: string;
+    fileConfig?: FileConfig;
+    id?: number;
+    modelConfig?: ModelConfig;
+    name?: string;
+    picture?: string;
+    tags?: string[];
+    version?: string;
+  };
+
+  type GeneratorFavourAddRequest = {
+    generatorId?: number;
+  };
+
+  type GeneratorFavourQueryRequest = {
+    current?: number;
+    generatorQueryRequest?: GeneratorQueryRequest;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
+  };
+
+  type GeneratorMakeRequest = {
+    meta?: Meta;
+    zipFilePath?: string;
   };
 
   type GeneratorQueryRequest = {
@@ -144,6 +188,10 @@ declare namespace API {
     tags?: string[];
     userId?: number;
     version?: string;
+  };
+
+  type GeneratorThumbAddRequest = {
+    generatorId?: number;
   };
 
   type GeneratorUpdateRequest = {
@@ -172,6 +220,7 @@ declare namespace API {
     createTime?: string;
     description?: string;
     distPath?: string;
+    favourNum?: number;
     fileConfig?: FileConfig;
     id?: number;
     modelConfig?: ModelConfig;
@@ -179,6 +228,7 @@ declare namespace API {
     picture?: string;
     status?: number;
     tags?: string[];
+    thumbNum?: number;
     updateTime?: string;
     user?: UserVO;
     userId?: number;
@@ -208,6 +258,17 @@ declare namespace API {
     userName?: string;
     userProfile?: string;
     userRole?: string;
+  };
+
+  type Meta = {
+    author?: string;
+    basePackage?: string;
+    createTime?: string;
+    description?: string;
+    fileConfig?: FileConfig;
+    modelConfig?: ModelConfig;
+    name?: string;
+    version?: string;
   };
 
   type ModelConfig = {

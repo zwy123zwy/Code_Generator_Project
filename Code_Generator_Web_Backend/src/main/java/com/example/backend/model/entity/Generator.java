@@ -75,6 +75,16 @@ public class Generator implements Serializable {
     private Integer status;
 
     /**
+     * 点赞数
+     */
+    private Integer thumbNum = 0;
+
+    /**
+     * 收藏数
+     */
+    private Integer favourNum = 0;
+
+    /**
      * 创建用户 id
      */
     private Long userId;

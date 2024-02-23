@@ -2,19 +2,23 @@ import { userLoginUsingPost } from '@/services/backend/userController';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
-import { Helmet, history, useModel,Link } from '@umijs/max';
+import { Helmet, history, useModel } from '@umijs/max';
 import { message, Tabs } from 'antd';
 import React, { useState } from 'react';
+import { Link } from 'umi';
 import Settings from '../../../../config/defaultSettings';
+import './index.css';
 // React.FC React.FC是一个函数式组件，是在TypeScript使用一个泛型，FC就是FunctionComponent的缩写，
 // 事实上React.FC可以写成React.FunctionComponent
 const Login: React.FC = () => {
+  // react hook state hook
   const [type, setType] = useState<string>('account');
+  //使用useModel钩子函数用于管理 React 应用程序的全局状态或初始状态
   const { initialState, setInitialState } = useModel('@@initialState');
   const containerClassName = useEmotionCss(() => {
     return {
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'row',
       height: '100vh',
       overflow: 'auto',
       backgroundImage:
@@ -54,6 +58,7 @@ const Login: React.FC = () => {
           {'登录'}- {Settings.title}
         </title>
       </Helmet>
+      {/* <img style={{ flex: '0.2'}}src= "/12.png"/> */}
       <div
         style={{
           flex: '1',
@@ -66,10 +71,15 @@ const Login: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" style={{ height: '100%' }} src="/LOGO1.svg" />}
-          title="EasyCode生成平台"
+          title="EasyCode代码生成平台"
           subTitle={'一个简单、好用的代码生成平台'}
           initialValues={{
             autoLogin: true,
+          }}
+          submitter={{
+            searchConfig: {
+              submitText: '欢迎登录'
+            }
           }}
           onFinish={async (values) => {
             await handleSubmit(values as API.UserLoginRequest);
@@ -125,11 +135,12 @@ const Login: React.FC = () => {
               textAlign: 'right',
             }}
           >
-          <Link to="/user/register" style={{color:'skyblue'}}>新用户注册</Link>
+            <Link to="/user/register" title="账号 admin;密码 12345678" className="test">
+              新用户注册
+            </Link>
           </div>
         </LoginForm>
       </div>
-      {/* <Footer /> */}
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Settings: ProLayoutProps & {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'EasyCode生成平台',
+  title: 'EasyCode代码生成平台',
   pwa: true,
   iconfontUrl: '',
   token: {

@@ -1,7 +1,7 @@
 package com.example.backend.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.example.backend.meta.Meta;
+import com.example.maker.meta.Meta;
 import com.example.backend.model.entity.Generator;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -74,7 +74,15 @@ public class GeneratorVO implements Serializable {
      * 状态
      */
     private Integer status;
+    /**
+     * 点赞数
+     */
+    private Integer thumbNum;
 
+    /**
+     * 收藏数
+     */
+    private Integer favourNum;
     /**
      * 创建用户 id
      */

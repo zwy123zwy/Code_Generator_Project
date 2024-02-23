@@ -41,7 +41,7 @@ export const requestConfig: RequestConfig = {
         throw new Error('服务异常');
       }
       //文件下载使得返回逻辑
-      if(requestPath.includes("download")){
+      if(data instanceof Blob){
         return response;
       } 
       // 错误码处理

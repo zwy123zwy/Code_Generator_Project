@@ -5,8 +5,8 @@
         "sourceRootPath": "C:/Users/Zhangwenye/Desktop/lowCode/codeGeneratorMaker/.temp/2/springboot-init",
         "files": [
             {
-                "inputPath": "src/main/java/com/example/springbootinit/common/BaseResponse.java.ftl",
-                "outputPath": "src/main/java/com/example/springbootinit/common/BaseResponse.java",
+                "inputPath": "src/main/java/com/example/springbootinit/common/ResultUtils.java.ftl",
+                "outputPath": "src/main/java/com/example/springbootinit/common/ResultUtils.java",
                 "type": "file",
                 "generateType": "dynamic"
             },
@@ -17,10 +17,10 @@
                 "generateType": "static"
             },
             {
-                "inputPath": "src/main/java/com/example/springbootinit/common/ErrorCode.java",
-                "outputPath": "src/main/java/com/example/springbootinit/common/ErrorCode.java",
+                "inputPath": "src/main/java/com/example/springbootinit/common/BaseResponse.java.ftl",
+                "outputPath": "src/main/java/com/example/springbootinit/common/BaseResponse.java",
                 "type": "file",
-                "generateType": "static"
+                "generateType": "dynamic"
             },
             {
                 "inputPath": "src/main/java/com/example/springbootinit/common/PageRequest.java",
@@ -29,10 +29,10 @@
                 "generateType": "static"
             },
             {
-                "inputPath": "src/main/java/com/example/springbootinit/common/ResultUtils.java.ftl",
-                "outputPath": "src/main/java/com/example/springbootinit/common/ResultUtils.java",
+                "inputPath": "src/main/java/com/example/springbootinit/common/ErrorCode.java",
+                "outputPath": "src/main/java/com/example/springbootinit/common/ErrorCode.java",
                 "type": "file",
-                "generateType": "dynamic"
+                "generateType": "static"
             }
         ]
     },

@@ -10,25 +10,46 @@ import picocli.CommandLine.Option;
 
 import java.util.concurrent.Callable;
 
+
 @Command(name = "generate", description = "生成代码", mixinStandardHelpOptions = true)
 @Data
 public class GenerateCommand implements Callable<Integer> {
 
-    @Option(names = {"-ng", "--needGit"}, arity = "0..1", description = "是否生成 .gitignore文件", interactive = true, echo = true)
+    @Option(names = {"--needGit"}, arity = "0..1", description = "是否生成 .gitignore 文件", interactive = true, echo = true)
     private boolean needGit = true;
 
     @Option(names = {"-l", "--loop"}, arity = "0..1", description = "是否生成循环", interactive = true, echo = true)
     private boolean loop = false;
 
-    @Option(names = {"-a", "--author"}, arity = "0..1", description = "作者注释", interactive = true, echo = true)
-    private String author = "example";
+    /**
+     * 核心模板
+     */
+    static DataModel.MainTemplate mainTemplate = new DataModel.MainTemplate();
 
-    @Option(names = {"-o", "--outputText"}, arity = "0..1", description = "输出信息", interactive = true, echo = true)
-    private String outputText = "sum = ";
+    @Command(name = "mainTemplate")
+    @Data
+    public static class MainTemplateCommand implements Runnable {
+        @Option(names = {"-a", "--author"}, arity = "0..1", description = "作者注释", interactive = true, echo = true)
+        private String author = "Zwy";
+        @Option(names = {"-o", "--outputText"}, arity = "0..1", description = "输出信息", interactive = true, echo = true)
+        private String outputText = "outputText = ";
+
+        @Override
+        public void run() {
+            mainTemplate.author = author;
+            mainTemplate.outputText = outputText;
+        }
+    }
 
     public Integer call() throws Exception {
+        if (loop) {
+            System.out.println("输入核心模板配置：");
+            CommandLine mainTemplateCommandLine = new CommandLine(MainTemplateCommand.class);
+            mainTemplateCommandLine.execute("--author", "--outputText");
+        }
         DataModel dataModel = new DataModel();
         BeanUtil.copyProperties(this, dataModel);
+        dataModel.mainTemplate = mainTemplate;
         FileGenerator.doGenerate(dataModel);
         return 0;
     }

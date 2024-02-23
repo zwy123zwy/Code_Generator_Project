@@ -38,6 +38,6 @@ public class  JarGenerator {
     }
 //测试代码
     public static void main(String[] args) throws IOException, InterruptedException {
-        doGenerate("C:\\Users\\Zhangwenye\\Desktop\\lowCode\\codeGeneratorMaker\\generated");
+        doGenerate("C:\\Users\\Zhangwenye\\Desktop\\Code_Generator\\Code_Generator_Web_Backend\\.temp\\make\\17608258862039900162uffap\\generated\\acm-template");
     }
 }

@@ -1,4 +1,4 @@
-# EasyCode生成平台
+# EasyCode代码生成平台
 
 基于 React + Ant Design 的项目初始模板，整合了常用框架和主流业务的示例代码。
 

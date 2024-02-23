@@ -8,7 +8,7 @@
   "fileConfig": {
     "inputRootPath": ".source/acm-template-pro",
     "outputRootPath": "generated",
-    "sourceRootPath": "C:/Users/Zhangwenye/Desktop/lowCode/demoProjects/acm-template-pro",
+    "sourceRootPath": "C:/Users/Zhangwenye/Desktop/Code_Generator/demoProjects/acm-template-pro",
     "type": "dir",
     "files": [
       {

@@ -71,3 +71,75 @@ INSERT INTO my_code.generator (id, name, description, basePackage, version, auth
                                      modelConfig, distPath, status, userId)
 VALUES (5, '商城', '商城项目生成器', 'com.example', '1.0', 'knight张', '["Java", "前端"]',
         'https://pic.yupi.icu/1/_r1_c0709-8e80689ac1da.jpg', '{}', '{}', null, 0, 1);
+
+-- 代码生成器点赞表（硬删除）
+create table if not exists generator_thumb
+(
+    id          bigint auto_increment comment 'id' primary key,
+    generatorId bigint                             not null comment '生成器 id',
+    userId      bigint                             not null comment '创建用户 id',
+    createTime  datetime default CURRENT_TIMESTAMP not null comment '创建时间',
+    updateTime  datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
+    index idx_postId (generatorId),
+    index idx_userId (userId)
+) comment '代码生成器点赞表';
+
+-- 代码生成器收藏表（硬删除）
+create table if not exists generator_favour
+(
+    id          bigint auto_increment comment 'id' primary key,
+    generatorId bigint                             not null comment '生成器 id',
+    userId      bigint                             not null comment '创建用户 id',
+    createTime  datetime default CURRENT_TIMESTAMP not null comment '创建时间',
+    updateTime  datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
+    index idx_postId (generatorId),
+    index idx_userId (userId)
+) comment '代码生成器收藏表';
+
+# 修改生成器表
+ALTER TABLE `generator`
+ADD COLUMN `favourNum` int  COLLATE utf8_general_ci DEFAULT NULL COMMENT '收藏数' AFTER `status`,
+ADD COLUMN `thumbNum` int  COLLATE utf8_general_ci DEFAULT NULL COMMENT '点赞数' AFTER `favourNum` ;
+ALTER TABLE `generator`
+    ALTER COLUMN `favourNum` SET DEFAULT  0,
+    ALTER COLUMN `thumbNum` SET DEFAULT  0;
+
+INSERT INTO my_code.generator (
+    `name`,
+    `description`,
+    `basePackage`,
+    `version`,
+    `author`,
+    `tags`,
+    `picture`,
+    `fileConfig`,
+    `modelConfig`,
+    `distPath`,
+    `status`,
+    `thumbNum`,
+    `favourNum`,
+    `userId`,
+    `createTime`,
+    `updateTime`,
+    `isDelete`
+)
+VALUES
+    (
+        'ACM 模板代码',
+        'ACM 模板项目生成器',
+        'com.azhang',
+        '1.0',
+        'knight张',
+        '["Java", "前端"]',
+        'https://pic.yupi.icu/1/_r0_c1851-bf115939332e.jpg',
+        '{\"inputRootPath\": \".source/acm-template-pro\",\"outputRootPath\": \"generated\",\"sourceRootPath\": \"C:/Users/Zhangwenye/Desktop/lowCode/demoProjects/acm-template-pro\",\"type\": \"dir\",\"files\": [{\"groupKey\": \"git\",\"groupName\": \"开源\",\"type\": \"group\",\"condition\": \"needGit\",\"files\": [{\"inputPath\": \".gitignore\",\"outputPath\": \".gitignore\",\"type\": \"file\",\"generateType\": \"static\"},{\"inputPath\": \"README.md\",\"outputPath\": \"README.md\",\"type\": \"file\",\"generateType\": \"static\"}]},{\"inputPath\": \"src/com/example/acm/MainTemplate.java.ftl\",\"outputPath\": \"src/com/example/acm/MainTemplate.java\",\"type\": \"file\",\"generateType\": \"dynamic\"}]}',
+        '{\"models\": [{\"fieldName\": \"needGit\",\"type\": \"boolean\",\"description\": \"是否生成 .gitignore 文件\",\"defaultValue\": true},{\"fieldName\": \"loop\",\"type\": \"boolean\",\"description\": \"是否生成循环\",\"defaultValue\": false,\"abbr\": \"l\"},{\"groupKey\": \"mainTemplate\",\"groupName\": \"核心模板\",\"type\": \"MainTemplate\",\"description\": \"用于生成核心模板文件\",\"condition\": \"loop\",\"models\": [{\"fieldName\": \"author\",\"type\": \"String\",\"description\": \"作者注释\",\"defaultValue\": \"Zwy\",\"abbr\": \"a\"},{\"fieldName\": \"outputText\",\"type\": \"String\",\"description\": \"输出信息\",\"defaultValue\": \"outputText = \",\"abbr\": \"o\"}]}]}',
+        NULL,
+        0,
+        12,
+        4,
+        1,
+        '2024-01-04 21:57:59',
+        '2024-01-11 18:53:05',
+        0
+    );

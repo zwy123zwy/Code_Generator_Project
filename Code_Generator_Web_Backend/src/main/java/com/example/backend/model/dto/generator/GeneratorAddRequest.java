@@ -1,6 +1,6 @@
 package com.example.backend.model.dto.generator;
 
-import com.example.backend.meta.Meta;
+import com.example.maker.meta.Meta;
 import lombok.Data;
 
 import java.io.Serializable;

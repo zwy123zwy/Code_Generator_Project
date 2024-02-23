@@ -13,7 +13,7 @@ interface Props {
 }
 
 /**
- * 更新节点
+ * 更新节点，函数
  *
  * @param fields
  */
@@ -34,7 +34,7 @@ const handleUpdate = async (fields: API.GeneratorUpdateRequest) => {
 };
 
 /**
- * 更新弹窗
+ * 更新弹窗，页面
  * @param props
  * @constructor
  */
@@ -46,6 +46,7 @@ const UpdateModal: React.FC<Props> = (props) => {
   }
 
   return (
+    // 弹框
     <Modal
       destroyOnClose
       title={'更新'}
@@ -55,6 +56,7 @@ const UpdateModal: React.FC<Props> = (props) => {
         onCancel?.();
       }}
     >
+      {/* 这个组件的作用是用于展示表格数据，并提供一些表格操作和交互功能。 */}
        <ProTable
         type="form"
         columns={columns}

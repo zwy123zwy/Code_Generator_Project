@@ -7,9 +7,12 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.backend.manager.CacheManager;
 import com.example.backend.manager.CosManager;
-import com.example.backend.meta.Meta;
+// 从自己写的jar包中引入对应的实体类
+
 
 import com.example.backend.annotation.AuthCheck;
 import com.example.backend.common.BaseResponse;
@@ -25,6 +28,12 @@ import com.example.backend.model.entity.User;
 import com.example.backend.model.vo.GeneratorVO;
 import com.example.backend.service.GeneratorService;
 import com.example.backend.service.UserService;
+
+import com.example.maker.generator.main.GenerateTemplate;
+import com.example.maker.generator.main.ZipGenerator;
+import com.example.maker.meta.Meta;
+import com.example.maker.meta.MetaValidator;
+
 import com.qcloud.cos.model.COSObject;
 import com.qcloud.cos.model.COSObjectInputStream;
 import com.qcloud.cos.utils.IOUtils;
@@ -61,10 +70,10 @@ public class GeneratorController {
     @Resource
     private CosManager cosManager;
 
-//    @Resource
-//    private CacheManager cacheManager;
+    @Resource
+    private CacheManager cacheManager;
 
-
+ 
     // region 增删改查
 
     /**
@@ -207,6 +216,7 @@ public class GeneratorController {
         stopWatch.start();
         Page<Generator> generatorPage = generatorService.page(new Page<>(current, size),
                 generatorService.getQueryWrapper(generatorQueryRequest));
+        System.out.println(generatorPage.getRecords());
         stopWatch.stop();
         System.out.println("查询生成器：" + stopWatch.getTotalTimeMillis());
 
@@ -225,39 +235,41 @@ public class GeneratorController {
      * @param request
      * @return
      */
-//    @PostMapping("/list/page/vo/fast")
-//    public BaseResponse<Page<GeneratorVO>> listGeneratorVOByPageFast(@RequestBody GeneratorQueryRequest generatorQueryRequest,
-//                                                                     HttpServletRequest request) {
-//        long current = generatorQueryRequest.getCurrent();
-//        long size = generatorQueryRequest.getPageSize();
-//        // 优先从缓存读取
-//        String cacheKey = getPageCacheKey(generatorQueryRequest);
-//        Object cacheValue = cacheManager.get(cacheKey);
-//        if (cacheValue != null) {
-//            return ResultUtils.success((Page<GeneratorVO>) cacheValue);
-//        }
-//
-//        // 限制爬虫
-//        ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
-//        QueryWrapper<Generator> queryWrapper = generatorService.getQueryWrapper(generatorQueryRequest);
-//        queryWrapper.select("id",
-//                "name",
-//                "description",
-//                "tags",
-//                "picture",
-//                "status",
-//                "userId",
-//                "createTime",
-//                "updateTime"
-//        );
-//        Page<Generator> generatorPage = generatorService.page(new Page<>(current, size), queryWrapper);
-//        Page<GeneratorVO> generatorVOPage = generatorService.getGeneratorVOPage(generatorPage, request);
-//        // 写入缓存
-//        cacheManager.put(cacheKey, generatorVOPage);
-//        return ResultUtils.success(generatorVOPage);
-//    }
-//
-//
+    @PostMapping("/list/page/vo/fast")
+    public BaseResponse<Page<GeneratorVO>> listGeneratorVOByPageFast(@RequestBody GeneratorQueryRequest generatorQueryRequest,
+                                                                     HttpServletRequest request) {
+        long current = generatorQueryRequest.getCurrent();
+        long size = generatorQueryRequest.getPageSize();
+        // 优先从缓存读取
+        String cacheKey = getPageCacheKey(generatorQueryRequest);
+        Object cacheValue = cacheManager.get(cacheKey);
+        if (cacheValue != null) {
+            return ResultUtils.success((Page<GeneratorVO>) cacheValue);
+        }
+
+        // 限制爬虫
+        ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
+        QueryWrapper<Generator> queryWrapper = generatorService.getQueryWrapper(generatorQueryRequest);
+        queryWrapper.select("id",
+                "name",
+                "description",
+                "tags",
+                "picture",
+                "status",
+                "favourNum",
+                "thumbNum",
+                "userId",
+                "createTime",
+                "updateTime"
+        );
+        Page<Generator> generatorPage = generatorService.page(new Page<>(current, size), queryWrapper);
+        Page<GeneratorVO> generatorVOPage = generatorService.getGeneratorVOPage(generatorPage, request);
+        // 写入缓存
+        cacheManager.put(cacheKey, generatorVOPage);
+        return ResultUtils.success(generatorVOPage);
+    }
+
+
 //    /**
 //     * 分页获取当前用户创建的资源列表
 //     *
@@ -284,42 +296,42 @@ public class GeneratorController {
 //
 //    // endregion
 //
-//    /**
-//     * 编辑（用户）
-//     *
-//     * @param generatorEditRequest
-//     * @param request
-//     * @return
-//     */
-//    @PostMapping("/edit")
-//    public BaseResponse<Boolean> editGenerator(@RequestBody GeneratorEditRequest generatorEditRequest, HttpServletRequest request) {
-//        if (generatorEditRequest == null || generatorEditRequest.getId() <= 0) {
-//            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-//        }
-//        Generator generator = new Generator();
-//        BeanUtils.copyProperties(generatorEditRequest, generator);
-//        List<String> tags = generatorEditRequest.getTags();
-//        generator.setTags(JSONUtil.toJsonStr(tags));
-//        Meta.FileConfig fileConfig = generatorEditRequest.getFileConfig();
-//        generator.setFileConfig(JSONUtil.toJsonStr(fileConfig));
-//        Meta.ModelConfig modelConfig = generatorEditRequest.getModelConfig();
-//        generator.setModelConfig(JSONUtil.toJsonStr(modelConfig));
-//
-//        // 参数校验
-//        generatorService.validGenerator(generator, false);
-//        User loginUser = userService.getLoginUser(request);
-//        long id = generatorEditRequest.getId();
-//        // 判断是否存在
-//        Generator oldGenerator = generatorService.getById(id);
-//        ThrowUtils.throwIf(oldGenerator == null, ErrorCode.NOT_FOUND_ERROR);
-//        // 仅本人或管理员可编辑
-//        if (!oldGenerator.getUserId().equals(loginUser.getId()) && !userService.isAdmin(loginUser)) {
-//            throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
-//        }
-//        boolean result = generatorService.updateById(generator);
-//        return ResultUtils.success(result);
-//    }
-//
+    /**
+     * 编辑（用户）
+     *
+     * @param generatorEditRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/edit")
+    public BaseResponse<Boolean> editGenerator(@RequestBody GeneratorEditRequest generatorEditRequest, HttpServletRequest request) {
+        if (generatorEditRequest == null || generatorEditRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        Generator generator = new Generator();
+        BeanUtils.copyProperties(generatorEditRequest, generator);
+        List<String> tags = generatorEditRequest.getTags();
+        generator.setTags(JSONUtil.toJsonStr(tags));
+        Meta.FileConfig fileConfig = generatorEditRequest.getFileConfig();
+        generator.setFileConfig(JSONUtil.toJsonStr(fileConfig));
+        Meta.ModelConfig modelConfig = generatorEditRequest.getModelConfig();
+        generator.setModelConfig(JSONUtil.toJsonStr(modelConfig));
+
+        // 参数校验
+        generatorService.validGenerator(generator, false);
+        User loginUser = userService.getLoginUser(request);
+        long id = generatorEditRequest.getId();
+        // 判断是否存在
+        Generator oldGenerator = generatorService.getById(id);
+        ThrowUtils.throwIf(oldGenerator == null, ErrorCode.NOT_FOUND_ERROR);
+        // 仅本人或管理员可编辑
+        if (!oldGenerator.getUserId().equals(loginUser.getId()) && !userService.isAdmin(loginUser)) {
+            throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+        }
+        boolean result = generatorService.updateById(generator);
+        return ResultUtils.success(result);
+    }
+
     /**
      * 根据 id 下载
      *
@@ -349,12 +361,12 @@ public class GeneratorController {
         response.setContentType("application/octet-stream;charset=UTF-8");
         response.setHeader("Content-Disposition", "attachment; filename=" + filepath);
 
-//        String zipFilePath = getCacheFilePath(id, filepath);
-//        if (FileUtil.exist(zipFilePath)) {
-//            // 写入响应
-//            Files.copy(Paths.get(zipFilePath), response.getOutputStream());
-//            return;
-//        }
+        String zipFilePath = getCacheFilePath(id, filepath);
+        if (FileUtil.exist(zipFilePath)) {
+            // 写入响应
+            Files.copy(Paths.get(zipFilePath), response.getOutputStream());
+            return;
+        }
 
         COSObjectInputStream cosObjectInput = null;
         try {
@@ -424,6 +436,7 @@ public class GeneratorController {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         try {
+//          // 从cos下载到指定路径
             cosManager.download(distPath, zipFilePath);
         } catch (Exception e) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "生成器下载失败");
@@ -472,16 +485,17 @@ public class GeneratorController {
 
         }
 
-        // 构造命令
-        File scriptDir = scriptFile.getParentFile();
+
         // win 系统
 //        String scriptAbsolutePath = scriptFile.getAbsolutePath().replace("\\", "/");
 //        String[] commands = new String[]{scriptAbsolutePath, "json-generate", "--file=" + dataModelFilePath};
 
         // 注意，如果是 mac / linux 系统，要用 "./generator"
-        String scriptAbsolutePath = scriptFile.getAbsolutePath();
-        String[] commands = new String[]{scriptAbsolutePath, "json-generate", "--file=" + dataModelFilePath};
 
+        String scriptAbsolutePath = scriptFile.getAbsolutePath().replace("\\", "/");;
+        String[] commands = new String[]{scriptAbsolutePath, "json-generate", "--file=" + dataModelFilePath};
+        // 构造命令
+        File scriptDir = scriptFile.getParentFile();
         // 这里一定要拆分！
         ProcessBuilder processBuilder = new ProcessBuilder(commands);
         processBuilder.directory(scriptDir);
@@ -516,7 +530,7 @@ public class GeneratorController {
         String resultPath = tempDirPath + "/result.zip";
         File resultFile = ZipUtil.zip(generatedPath, resultPath);
         stopWatch.stop();
-        System.out.println("压缩结果：" + stopWatch.getTotalTimeMillis());
+          System.out.println("压缩结果：" + stopWatch.getTotalTimeMillis());
 
         // 设置响应头
         response.setContentType("application/octet-stream;charset=UTF-8");
@@ -527,6 +541,7 @@ public class GeneratorController {
         CompletableFuture.runAsync(() -> {
             FileUtil.del(tempDirPath);
         });
+
     }
 
     /**

@@ -31,7 +31,9 @@ public class DynamicFileGenerator {
 
         // 获取模板文件所属包和模板名称
         int lastSplitIndex = relativeInputPath.lastIndexOf("/");
+        //按照文件路径分割 按照基础报的路径分割
         String basePackagePath = relativeInputPath.substring(0, lastSplitIndex);
+        //模板文件所在的位置
         String templateName = relativeInputPath.substring(lastSplitIndex + 1);
 
         // 通过类加载器读取模板
