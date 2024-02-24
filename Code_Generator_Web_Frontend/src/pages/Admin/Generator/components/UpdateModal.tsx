@@ -49,15 +49,17 @@ const UpdateModal: React.FC<Props> = (props) => {
     // 弹框
     <Modal
       destroyOnClose
-      title={'更新'}
+      title={'更新代码生成器配置'}
       open={visible}
       footer={null}
       onCancel={() => {
         onCancel?.();
       }}
+      style={{textAlign: 'center',fontFamily: '黑体' }}
     >
       {/* 这个组件的作用是用于展示表格数据，并提供一些表格操作和交互功能。 */}
        <ProTable
+        style={{fontFamily: 'SimSun' }}
         type="form"
         columns={columns}
         form={{

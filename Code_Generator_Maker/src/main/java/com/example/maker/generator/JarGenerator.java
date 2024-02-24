@@ -12,7 +12,7 @@ public class  JarGenerator {
         String otherMavenCommand = "mvn clean package -DskipTests=true";
         // 必须使用windows下的命令
         // todo 如果上线这边的命令可能需要发生改变，这里需要突出注意
-        String mavenCommand = winMavenCommand;
+        String mavenCommand = otherMavenCommand;
 
         // 这里一定要拆分！
         ProcessBuilder processBuilder = new ProcessBuilder(mavenCommand.split(" "));

@@ -8,7 +8,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import '@umijs/max';
-import { Button, message, Select, Space, Tag, Typography } from 'antd';
+import { Button, message, Select, Space, Tag, Typography,Tooltip,Modal } from 'antd';
 import React, { useRef, useState } from 'react';
 
 /**
@@ -120,16 +120,76 @@ const GeneratorAdminPage: React.FC = () => {
       title: '文件配置',
       dataIndex: 'fileConfig',
       valueType: 'jsonCode',
+      // 自定义渲染逻辑
+      render(_,record)  {
+        // 判断 JSON 字符串长度是否超过指定阈值
+        if (record.fileConfig && record.fileConfig.length > 50) {
+          // 如果超过阈值，则截取前50个字符并添加省略号
+          const truncatedJson = '{...}';
+          // 返回截断后的 JSON 字符串，用 Tooltip 组件包裹以实现悬停提示
+          return (
+            <Tooltip title={record.fileConfig}>             
+                <span  style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={() => {
+                      setCurrentRow(record);
+                      setUpdateModalVisible(true);
+                    }}> 
+                    {truncatedJson}
+                </span> 
+            </Tooltip>
+            
+          );
+        }
+        // 如果未超过阈值，则直接显示完整 JSON 字符串
+        return <span>{record.fileConfig}</span>;
+      },
     },
     {
       title: '模型配置',
       dataIndex: 'modelConfig',
       valueType: 'jsonCode',
+      // 自定义渲染逻辑
+      render(_,record)  {
+        // 判断 JSON 字符串长度是否超过指定阈值
+        if (record.modelConfig && record.modelConfig.length > 50) {
+          // 如果超过阈值，则截取前50个字符并添加省略号
+          const truncatedJson =   '{...}';
+          // 返回截断后的 JSON 字符串
+          return <Tooltip title={record.modelConfig}>             
+                  <span  style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={() => {
+                      setCurrentRow(record);
+                      setUpdateModalVisible(true);
+                    }}> 
+                    {truncatedJson}
+                  </span>   
+                </Tooltip>
+        }
+        // 如果未超过阈值，则直接显示完整 JSON 字符串
+        return <span>{record.modelConfig}</span>;
+      },
     },
     {
       title: '产物包路径',
       dataIndex: 'distPath',
       valueType: 'jsonCode',
+      // 自定义渲染逻辑
+      render(_,record)  {
+        // 判断 JSON 字符串长度是否超过指定阈值
+        if (record.distPath && record.distPath.length > 50) {
+          // 如果超过阈值，则截取前50个字符并添加省略号
+          const truncatedJson =   '{...}';
+          // 返回截断后的 JSON 字符串
+          return <Tooltip title={record.distPath}>             
+                    <span  style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={() => {
+                        setCurrentRow(record);
+                        setUpdateModalVisible(true);
+                      }}> 
+                      {truncatedJson}
+                    </span> 
+                </Tooltip>
+        }
+        // 如果未超过阈值，则直接显示完整 JSON 字符串
+        return <span>{record.distPath}</span>;
+      },
     },
     {
       title: '状态',

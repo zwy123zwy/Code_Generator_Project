@@ -464,19 +464,19 @@ public class GeneratorController {
         // 找到脚本文件所在路径
         // 要注意，如果不是 windows 系统，找 generator 文件而不是 bat
 //        todo 这里上线可能需要更改环境
-//        File scriptFile = FileUtil.loopFiles(unzipDistDir, 2, null)
-//                .stream()
-//                .filter(file -> file.isFile()
-//                        && "generator".equals(file.getName()))
-//                .findFirst()
-//                .orElseThrow(RuntimeException::new);
-//        windows系统
         File scriptFile = FileUtil.loopFiles(unzipDistDir, 2, null)
                 .stream()
                 .filter(file -> file.isFile()
-                        && "generator.bat".equals(file.getName()))
+                        && "generator".equals(file.getName()))
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
+//        windows系统
+//        File scriptFile = FileUtil.loopFiles(unzipDistDir, 2, null)
+//                .stream()
+//                .filter(file -> file.isFile()
+//                        && "generator.bat".equals(file.getName()))
+//                .findFirst()
+//                .orElseThrow(RuntimeException::new);
         // 添加可执行权限
         try {
             Set<PosixFilePermission> permissions = PosixFilePermissions.fromString("rwxrwxrwx");
@@ -492,7 +492,7 @@ public class GeneratorController {
 
         // 注意，如果是 mac / linux 系统，要用 "./generator"
 
-        String scriptAbsolutePath = scriptFile.getAbsolutePath().replace("\\", "/");;
+        String scriptAbsolutePath = scriptFile.getAbsolutePath();
         String[] commands = new String[]{scriptAbsolutePath, "json-generate", "--file=" + dataModelFilePath};
         // 构造命令
         File scriptDir = scriptFile.getParentFile();
